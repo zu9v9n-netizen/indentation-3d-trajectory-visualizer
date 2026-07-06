@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>3D Indentation Overlay</title>
+  <title>3D Indentation Plots</title>
   <style>
     :root {
       color-scheme: light;
       --ink: #111827;
-      --muted: #6b7280;
+      --muted: #5f6673;
       --line: #d1d5db;
       --paper: #ffffff;
-      --soft: #f3f4f6;
+      --soft: #f5f6f8;
       --accent: #2563eb;
     }
     * { box-sizing: border-box; }
@@ -86,56 +86,94 @@
       background: white;
       border-top: 1px solid var(--line);
     }
+    .pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+    .pair img {
+      border-top: 0;
+    }
+    .pair img + img {
+      border-left: 1px solid var(--line);
+    }
     .hint {
       margin-top: 8px;
       font-size: 14px;
+    }
+    @media (max-width: 720px) {
+      .pair {
+        grid-template-columns: 1fr;
+      }
+      .pair img + img {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>3D Indentation Overlay</h1>
-    <p>Accepted trials only. x = time from contact start, y = indentation, z = zeroed load.</p>
-    <p class="hint">スマホでは画像をピンチズームして確認できます。</p>
+    <h1>3D Indentation Plots</h1>
+    <p>Accepted trials only. Velocity = derivative of indentation after contact start.</p>
+    <p class="hint">スマホでは画像をタップして拡大すると細部まで確認できます。</p>
   </header>
   <nav aria-label="plots">
-    <a href="#all">All</a>
-    <a href="#okabe">Okabe</a>
-    <a href="#kotera">Kotera</a>
-    <a href="#okabe-cool">Okabe cool</a>
-    <a href="#okabe-room">Okabe room</a>
-    <a href="#kotera-cool">Kotera cool</a>
-    <a href="#kotera-room">Kotera room</a>
+    <a href="#velocity-all">Velocity all</a>
+    <a href="#velocity-subjects">Velocity subjects</a>
+    <a href="#velocity-conditions">Velocity conditions</a>
+    <a href="#time-overlay">Time overlay</a>
+    <a href="#single-overlays">Single overlays</a>
   </nav>
   <main>
-    <section id="all">
-      <h2>All Subjects and Conditions</h2>
-      <p>cool は青、room は赤です。</p>
+    <section id="velocity-all">
+      <h2>Velocity / Indentation / Load: All Conditions</h2>
+      <p>散布図が主役です。曲面は荷重を二次式で近似した参考ガイドです。</p>
+      <div class="pair">
+        <img src="images/all_conditions_velocity_load_displacement_scatter.png" alt="Velocity indentation load scatter for all conditions">
+        <img src="images/all_conditions_velocity_load_displacement_surface.png" alt="Velocity indentation load scatter with quadratic surface for all conditions">
+      </div>
+    </section>
+
+    <section id="velocity-subjects">
+      <h2>Velocity Surface by Subject</h2>
+      <div class="pair">
+        <img src="images/okabe_velocity_load_displacement_surface.png" alt="Okabe velocity indentation load surface">
+        <img src="images/kotera_velocity_load_displacement_surface.png" alt="Kotera velocity indentation load surface">
+      </div>
+    </section>
+
+    <section id="velocity-conditions">
+      <h2>Velocity Scatter and Surface by Condition</h2>
+      <div class="pair">
+        <img src="images/okabe_cool_velocity_load_displacement_scatter.png" alt="Okabe cool velocity indentation load scatter">
+        <img src="images/okabe_cool_velocity_load_displacement_surface.png" alt="Okabe cool velocity indentation load surface">
+        <img src="images/okabe_room_velocity_load_displacement_scatter.png" alt="Okabe room velocity indentation load scatter">
+        <img src="images/okabe_room_velocity_load_displacement_surface.png" alt="Okabe room velocity indentation load surface">
+        <img src="images/kotera_cool_velocity_load_displacement_scatter.png" alt="Kotera cool velocity indentation load scatter">
+        <img src="images/kotera_cool_velocity_load_displacement_surface.png" alt="Kotera cool velocity indentation load surface">
+        <img src="images/kotera_room_velocity_load_displacement_scatter.png" alt="Kotera room velocity indentation load scatter">
+        <img src="images/kotera_room_velocity_load_displacement_surface.png" alt="Kotera room velocity indentation load surface">
+      </div>
+    </section>
+
+    <section id="time-overlay">
+      <h2>Time / Indentation / Load Overlay</h2>
+      <p>前回の3次元重ね合わせです。x = contact start からの時間, y = 変位, z = ゼロ補正後の荷重。</p>
       <img src="images/all_subjects_conditions_3d_overlay.png" alt="All subjects and conditions 3D overlay">
     </section>
-    <section id="okabe">
-      <h2>Okabe Room/Cool</h2>
-      <img src="images/okabe_room_cool_3d_overlay.png" alt="Okabe room and cool 3D overlay">
-    </section>
-    <section id="kotera">
-      <h2>Kotera Room/Cool</h2>
-      <img src="images/kotera_room_cool_3d_overlay.png" alt="Kotera room and cool 3D overlay">
-    </section>
-    <section id="okabe-cool">
-      <h2>Okabe Cool</h2>
-      <img src="images/okabe_cool_3d_overlay.png" alt="Okabe cool 3D overlay">
-    </section>
-    <section id="okabe-room">
-      <h2>Okabe Room</h2>
-      <img src="images/okabe_room_3d_overlay.png" alt="Okabe room 3D overlay">
-    </section>
-    <section id="kotera-cool">
-      <h2>Kotera Cool</h2>
-      <img src="images/kotera_cool_3d_overlay.png" alt="Kotera cool 3D overlay">
-    </section>
-    <section id="kotera-room">
-      <h2>Kotera Room</h2>
-      <img src="images/kotera_room_3d_overlay.png" alt="Kotera room 3D overlay">
+
+    <section id="single-overlays">
+      <h2>Time Overlay by Subject and Condition</h2>
+      <div class="pair">
+        <img src="images/okabe_room_cool_3d_overlay.png" alt="Okabe room and cool 3D overlay">
+        <img src="images/kotera_room_cool_3d_overlay.png" alt="Kotera room and cool 3D overlay">
+        <img src="images/okabe_cool_3d_overlay.png" alt="Okabe cool 3D overlay">
+        <img src="images/okabe_room_3d_overlay.png" alt="Okabe room 3D overlay">
+        <img src="images/kotera_cool_3d_overlay.png" alt="Kotera cool 3D overlay">
+        <img src="images/kotera_room_3d_overlay.png" alt="Kotera room 3D overlay">
+      </div>
     </section>
   </main>
 </body>
