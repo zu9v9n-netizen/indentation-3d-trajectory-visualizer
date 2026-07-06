@@ -69,6 +69,5 @@ outputs/
 ## 開発用テスト
 
 ```bash
-python -m pytest
+python -m unittest discover -s tests
 ```
-

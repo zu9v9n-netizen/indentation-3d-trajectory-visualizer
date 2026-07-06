@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import unittest
+
 import numpy as np
 import pandas as pd
 
@@ -20,28 +22,32 @@ def make_sample_dataframe() -> pd.DataFrame:
     return pd.DataFrame({"time_s": time, "load_N": load, "displacement_mm": displacement})
 
 
-def test_process_dataframe_creates_contact_corrected_trial() -> None:
-    config = VisualizationConfig(
-        sample_interval_sec=0.01,
-        smoothing_window_samples=5,
-        pre_margin_sec=0.1,
-        post_margin_sec=0.1,
-        min_active_duration_sec=0.05,
-    )
-    corrected, contacts, _ = process_dataframe(
-        make_sample_dataframe(),
-        config,
-        subject="sample",
-        condition="room",
-        source_csv="sample.csv",
-    )
+class ProcessingTest(unittest.TestCase):
+    def test_process_dataframe_creates_contact_corrected_trial(self) -> None:
+        config = VisualizationConfig(
+            sample_interval_sec=0.01,
+            smoothing_window_samples=5,
+            pre_margin_sec=0.1,
+            post_margin_sec=0.1,
+            min_active_duration_sec=0.05,
+        )
+        corrected, contacts, _ = process_dataframe(
+            make_sample_dataframe(),
+            config,
+            subject="sample",
+            condition="room",
+            source_csv="sample.csv",
+        )
 
-    assert len(contacts) == 1
-    assert not corrected.empty
-    assert corrected["trial_id"].nunique() == 1
-    assert contacts.loc[0, "event_quality_label"] == "normal"
+        self.assertEqual(len(contacts), 1)
+        self.assertFalse(corrected.empty)
+        self.assertEqual(corrected["trial_id"].nunique(), 1)
+        self.assertEqual(contacts.loc[0, "event_quality_label"], "normal")
 
-    contact_rows = corrected[corrected["global_sample"] == contacts.loc[0, "contact_start_index"]]
-    assert abs(float(contact_rows.iloc[0]["indentation_mm"])) < 1e-9
-    assert abs(float(contact_rows.iloc[0]["relative_time_s"])) < 1e-9
+        contact_rows = corrected[corrected["global_sample"] == contacts.loc[0, "contact_start_index"]]
+        self.assertLess(abs(float(contact_rows.iloc[0]["indentation_mm"])), 1e-9)
+        self.assertLess(abs(float(contact_rows.iloc[0]["relative_time_s"])), 1e-9)
 
+
+if __name__ == "__main__":
+    unittest.main()
