@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3D Indentation Overlay</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #111827;
+      --muted: #6b7280;
+      --line: #d1d5db;
+      --paper: #ffffff;
+      --soft: #f3f4f6;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--soft);
+      line-height: 1.55;
+    }
+    header {
+      padding: 28px 18px 18px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+    main {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: 18px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 7vw, 40px);
+      letter-spacing: 0;
+    }
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 14px 18px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      flex: 0 0 auto;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 0 0 18px;
+      overflow: hidden;
+    }
+    section h2 {
+      font-size: 18px;
+      margin: 0;
+      padding: 14px 14px 8px;
+    }
+    section p {
+      padding: 0 14px 12px;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: white;
+      border-top: 1px solid var(--line);
+    }
+    .hint {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>3D Indentation Overlay</h1>
+    <p>Accepted trials only. x = time from contact start, y = indentation, z = zeroed load.</p>
+    <p class="hint">スマホでは画像をピンチズームして確認できます。</p>
+  </header>
+  <nav aria-label="plots">
+    <a href="#all">All</a>
+    <a href="#okabe">Okabe</a>
+    <a href="#kotera">Kotera</a>
+    <a href="#okabe-cool">Okabe cool</a>
+    <a href="#okabe-room">Okabe room</a>
+    <a href="#kotera-cool">Kotera cool</a>
+    <a href="#kotera-room">Kotera room</a>
+  </nav>
+  <main>
+    <section id="all">
+      <h2>All Subjects and Conditions</h2>
+      <p>cool は青、room は赤です。</p>
+      <img src="images/all_subjects_conditions_3d_overlay.png" alt="All subjects and conditions 3D overlay">
+    </section>
+    <section id="okabe">
+      <h2>Okabe Room/Cool</h2>
+      <img src="images/okabe_room_cool_3d_overlay.png" alt="Okabe room and cool 3D overlay">
+    </section>
+    <section id="kotera">
+      <h2>Kotera Room/Cool</h2>
+      <img src="images/kotera_room_cool_3d_overlay.png" alt="Kotera room and cool 3D overlay">
+    </section>
+    <section id="okabe-cool">
+      <h2>Okabe Cool</h2>
+      <img src="images/okabe_cool_3d_overlay.png" alt="Okabe cool 3D overlay">
+    </section>
+    <section id="okabe-room">
+      <h2>Okabe Room</h2>
+      <img src="images/okabe_room_3d_overlay.png" alt="Okabe room 3D overlay">
+    </section>
+    <section id="kotera-cool">
+      <h2>Kotera Cool</h2>
+      <img src="images/kotera_cool_3d_overlay.png" alt="Kotera cool 3D overlay">
+    </section>
+    <section id="kotera-room">
+      <h2>Kotera Room</h2>
+      <img src="images/kotera_room_3d_overlay.png" alt="Kotera room 3D overlay">
+    </section>
+  </main>
+</body>
+</html>
