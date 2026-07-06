@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# User measurement data and generated analysis results
+data/
+raw/
+outputs/
+*.xlsx
+*.xls
+

@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "indentation-3d-trajectory-visualizer"
+version = "0.1.0"
+description = "Create contact-corrected 3D indentation trajectory plots from load/displacement CSV files."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+    "pandas>=2.1",
+]
+
+[project.scripts]
+indentation-3d = "indentation_3d_trajectory_visualizer.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
