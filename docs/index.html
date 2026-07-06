@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -117,36 +117,62 @@
   <header>
     <h1>3D Indentation Plots</h1>
     <p>Accepted trials only. Velocity = derivative of indentation after contact start.</p>
-    <p class="hint">スマホでは画像をタップして拡大すると細部まで確認できます。</p>
+    <p class="hint">On mobile, tap an image to open and zoom it.</p>
   </header>
   <nav aria-label="plots">
+    <a href="#zoom-all">Zoom all</a>
+    <a href="#zoom-subjects">Zoom subjects</a>
+    <a href="#zoom-conditions">Zoom conditions</a>
     <a href="#velocity-all">Velocity all</a>
-    <a href="#velocity-subjects">Velocity subjects</a>
     <a href="#velocity-conditions">Velocity conditions</a>
     <a href="#time-overlay">Time overlay</a>
-    <a href="#single-overlays">Single overlays</a>
   </nav>
   <main>
+    <section id="zoom-all">
+      <h2>Positive Velocity, Indentation 0-1 mm: All Conditions</h2>
+      <p>Main zoom view. x = positive velocity, y = indentation from 0 to 1 mm, z = zeroed load.</p>
+      <div class="pair">
+        <img src="images/positive_velocity_indent_0_1mm_all_scatter.png" alt="Positive velocity indentation 0-1 mm scatter for all conditions">
+        <img src="images/positive_velocity_indent_0_1mm_all_surface.png" alt="Positive velocity indentation 0-1 mm scatter with quadratic guide surface">
+      </div>
+    </section>
+
+    <section id="zoom-subjects">
+      <h2>Positive Velocity Zoom by Subject</h2>
+      <div class="pair">
+        <img src="images/okabe_positive_velocity_indent_0_1mm_surface.png" alt="Okabe positive velocity indentation 0-1 mm surface">
+        <img src="images/kotera_positive_velocity_indent_0_1mm_surface.png" alt="Kotera positive velocity indentation 0-1 mm surface">
+      </div>
+    </section>
+
+    <section id="zoom-conditions">
+      <h2>Positive Velocity Zoom by Condition</h2>
+      <div class="pair">
+        <img src="images/okabe_cool_positive_velocity_indent_0_1mm_scatter.png" alt="Okabe cool positive velocity 0-1 mm scatter">
+        <img src="images/okabe_cool_positive_velocity_indent_0_1mm_surface.png" alt="Okabe cool positive velocity 0-1 mm surface">
+        <img src="images/okabe_room_positive_velocity_indent_0_1mm_scatter.png" alt="Okabe room positive velocity 0-1 mm scatter">
+        <img src="images/okabe_room_positive_velocity_indent_0_1mm_surface.png" alt="Okabe room positive velocity 0-1 mm surface">
+        <img src="images/kotera_cool_positive_velocity_indent_0_1mm_scatter.png" alt="Kotera cool positive velocity 0-1 mm scatter">
+        <img src="images/kotera_cool_positive_velocity_indent_0_1mm_surface.png" alt="Kotera cool positive velocity 0-1 mm surface">
+        <img src="images/kotera_room_positive_velocity_indent_0_1mm_scatter.png" alt="Kotera room positive velocity 0-1 mm scatter">
+        <img src="images/kotera_room_positive_velocity_indent_0_1mm_surface.png" alt="Kotera room positive velocity 0-1 mm surface">
+      </div>
+    </section>
+
     <section id="velocity-all">
       <h2>Velocity / Indentation / Load: All Conditions</h2>
-      <p>散布図が主役です。曲面は荷重を二次式で近似した参考ガイドです。</p>
+      <p>Full-range scatter first. The translucent quadratic surface is only a visual guide.</p>
       <div class="pair">
         <img src="images/all_conditions_velocity_load_displacement_scatter.png" alt="Velocity indentation load scatter for all conditions">
         <img src="images/all_conditions_velocity_load_displacement_surface.png" alt="Velocity indentation load scatter with quadratic surface for all conditions">
       </div>
     </section>
 
-    <section id="velocity-subjects">
-      <h2>Velocity Surface by Subject</h2>
+    <section id="velocity-conditions">
+      <h2>Full Velocity Range by Condition</h2>
       <div class="pair">
         <img src="images/okabe_velocity_load_displacement_surface.png" alt="Okabe velocity indentation load surface">
         <img src="images/kotera_velocity_load_displacement_surface.png" alt="Kotera velocity indentation load surface">
-      </div>
-    </section>
-
-    <section id="velocity-conditions">
-      <h2>Velocity Scatter and Surface by Condition</h2>
-      <div class="pair">
         <img src="images/okabe_cool_velocity_load_displacement_scatter.png" alt="Okabe cool velocity indentation load scatter">
         <img src="images/okabe_cool_velocity_load_displacement_surface.png" alt="Okabe cool velocity indentation load surface">
         <img src="images/okabe_room_velocity_load_displacement_scatter.png" alt="Okabe room velocity indentation load scatter">
@@ -160,12 +186,8 @@
 
     <section id="time-overlay">
       <h2>Time / Indentation / Load Overlay</h2>
-      <p>前回の3次元重ね合わせです。x = contact start からの時間, y = 変位, z = ゼロ補正後の荷重。</p>
+      <p>x = time from contact start, y = indentation, z = zeroed load.</p>
       <img src="images/all_subjects_conditions_3d_overlay.png" alt="All subjects and conditions 3D overlay">
-    </section>
-
-    <section id="single-overlays">
-      <h2>Time Overlay by Subject and Condition</h2>
       <div class="pair">
         <img src="images/okabe_room_cool_3d_overlay.png" alt="Okabe room and cool 3D overlay">
         <img src="images/kotera_room_cool_3d_overlay.png" alt="Kotera room and cool 3D overlay">
