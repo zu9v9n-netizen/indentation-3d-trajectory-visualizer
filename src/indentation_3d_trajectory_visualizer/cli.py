@@ -29,6 +29,7 @@ def build_parser() -> argparse.ArgumentParser:
     analyze.add_argument("--post-margin-sec", type=float, default=2.0)
     analyze.add_argument("--min-active-duration-sec", type=float, default=0.2)
     analyze.add_argument("--max-gap-within-trial-sec", type=float, default=0.1)
+    analyze.add_argument("--min-valid-displacement-excursion-mm", type=float, default=0.05)
     analyze.add_argument("--no-zero-correction", action="store_true")
     analyze.add_argument("--no-plots", action="store_true")
     return parser
@@ -50,6 +51,7 @@ def main(argv: list[str] | None = None) -> int:
             post_margin_sec=args.post_margin_sec,
             min_active_duration_sec=args.min_active_duration_sec,
             max_gap_within_trial_sec=args.max_gap_within_trial_sec,
+            min_valid_displacement_excursion_mm=args.min_valid_displacement_excursion_mm,
             zero_correction=not args.no_zero_correction,
             save_plots=not args.no_plots,
         )
@@ -69,4 +71,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

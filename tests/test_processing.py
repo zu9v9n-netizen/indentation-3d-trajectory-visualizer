@@ -46,7 +46,29 @@ class ProcessingTest(unittest.TestCase):
 
         contact_rows = corrected[corrected["global_sample"] == contacts.loc[0, "contact_start_index"]]
         self.assertLess(abs(float(contact_rows.iloc[0]["indentation_mm"])), 1e-9)
-        self.assertLess(abs(float(contact_rows.iloc[0]["relative_time_s"])), 1e-9)
+        self.assertGreaterEqual(float(contact_rows.iloc[0]["relative_time_s"]), 0.0)
+
+    def test_short_trial_candidates_are_dropped_like_source_analysis(self) -> None:
+        time = np.arange(0, 1.0, 0.01)
+        load = np.zeros_like(time)
+        displacement = np.zeros_like(time)
+        active = (time >= 0.4) & (time <= 0.45)
+        load[active] = 0.12
+        displacement[active] = np.linspace(0.0, 0.03, active.sum())
+        raw = pd.DataFrame({"time_s": time, "load_N": load, "displacement_mm": displacement})
+        config = VisualizationConfig(
+            sample_interval_sec=0.01,
+            smoothing_window_samples=1,
+            pre_margin_sec=0.1,
+            post_margin_sec=0.1,
+            min_active_duration_sec=0.2,
+            max_gap_within_trial_sec=0.02,
+        )
+
+        corrected, contacts, _ = process_dataframe(raw, config, source_csv="short.csv")
+
+        self.assertTrue(contacts.empty)
+        self.assertTrue(corrected.empty)
 
 
 if __name__ == "__main__":

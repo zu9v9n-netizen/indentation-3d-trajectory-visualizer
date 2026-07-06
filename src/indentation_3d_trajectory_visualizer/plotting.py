@@ -92,9 +92,40 @@ def save_overview_plot(
     axes[1].set_ylabel("displacement (mm)")
 
     if not contact_points.empty:
+        label_state = {"cut": False, "threshold": False, "contact": False}
         for _, row in contact_points.iterrows():
+            cut_label = "cut window" if not label_state["cut"] else None
+            threshold_label = "threshold active" if not label_state["threshold"] else None
             for ax in axes:
-                ax.axvline(row["contact_start_time_s"], color="#dc2626", linewidth=0.9, alpha=0.7)
+                if {"cut_start_time_s", "cut_end_time_s"}.issubset(contact_points.columns):
+                    ax.axvspan(
+                        row["cut_start_time_s"],
+                        row["cut_end_time_s"],
+                        color="#94a3b8",
+                        alpha=0.08,
+                        label=cut_label,
+                    )
+                if {"threshold_start_time_s", "threshold_end_time_s"}.issubset(contact_points.columns):
+                    ax.axvspan(
+                        row["threshold_start_time_s"],
+                        row["threshold_end_time_s"],
+                        color="#2563eb",
+                        alpha=0.16,
+                        label=threshold_label,
+                    )
+            label_state["cut"] = True
+            label_state["threshold"] = True
+            contact_label = "contact start" if not label_state["contact"] else None
+            for ax in axes:
+                ax.axvline(
+                    row["contact_start_time_s"],
+                    color="#dc2626",
+                    linewidth=0.9,
+                    alpha=0.7,
+                    label=contact_label,
+                )
+            label_state["contact"] = True
+        axes[0].legend(loc="upper right")
 
     fig.suptitle("Raw signal and contact starts")
     fig.tight_layout()

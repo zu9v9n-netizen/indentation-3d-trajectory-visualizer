@@ -16,9 +16,9 @@ class VisualizationConfig:
     min_active_duration_sec: float = 0.2
     max_gap_within_trial_sec: float = 0.1
     zero_correction: bool = True
+    min_valid_displacement_excursion_mm: float = 0.05
     save_trial_csv: bool = True
     save_plots: bool = True
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
-
