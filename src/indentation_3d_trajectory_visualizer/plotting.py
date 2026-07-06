@@ -46,6 +46,8 @@ def save_3d_trial_plots(corrected: pd.DataFrame, output_dir: Path) -> None:
             s=36,
             label="contact start",
         )
+        if not active.empty:
+            _focus_axes_on_active_region(ax, active)
         label = str(trial["event_quality_label"].iloc[0])
         title = f"{trial['subject'].iloc[0]} {trial['condition'].iloc[0]} trial {trial_id} ({label})"
         ax.set_title(title)
@@ -104,3 +106,21 @@ def _safe_name(value: object) -> str:
     text = str(value).strip().replace(" ", "_")
     return "".join(ch if ch.isalnum() or ch in "._-" else "_" for ch in text) or "unknown"
 
+
+def _focus_axes_on_active_region(ax, active: pd.DataFrame) -> None:
+    _set_padded_limit(ax.set_xlim, active["relative_time_s"])
+    _set_padded_limit(ax.set_ylim, active["indentation_mm"])
+    _set_padded_limit(ax.set_zlim, active["load_zeroed_N"])
+
+
+def _set_padded_limit(setter, values: pd.Series) -> None:
+    finite = pd.to_numeric(values, errors="coerce").dropna()
+    if finite.empty:
+        return
+    low = float(finite.min())
+    high = float(finite.max())
+    span = high - low
+    pad = max(span * 0.12, 0.01)
+    if span == 0:
+        pad = max(abs(high) * 0.12, 0.01)
+    setter(low - pad, high + pad)
