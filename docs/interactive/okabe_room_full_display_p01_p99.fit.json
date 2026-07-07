@@ -1,0 +1,17 @@
+{
+  "subject": "okabe",
+  "condition": "room",
+  "filter": "Full display p01-p99",
+  "fit_model": "load_zeroed_N = a + b*v + c*d + d2*v^2 + e*d^2 + f*v*d",
+  "fit_uses": "filtered data before display sampling",
+  "display_sampling_uses": "scatter markers only",
+  "fit_points": 21200.0,
+  "fit_r2": 0.9513322503553934,
+  "fit_rmse_N": 0.10986368030196512,
+  "coef_intercept": 0.4512000124539015,
+  "coef_velocity": -0.023487020315427733,
+  "coef_indentation": -0.571721649910506,
+  "coef_velocity2": -5.279859704820228e-05,
+  "coef_indentation2": 0.24866392010317792,
+  "coef_velocity_indentation": 0.019979448777017527
+}

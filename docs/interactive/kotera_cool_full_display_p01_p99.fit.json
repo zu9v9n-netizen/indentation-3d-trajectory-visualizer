@@ -1,0 +1,17 @@
+{
+  "subject": "kotera",
+  "condition": "cool",
+  "filter": "Full display p01-p99",
+  "fit_model": "load_zeroed_N = a + b*v + c*d + d2*v^2 + e*d^2 + f*v*d",
+  "fit_uses": "filtered data before display sampling",
+  "display_sampling_uses": "scatter markers only",
+  "fit_points": 17363.0,
+  "fit_r2": 0.9777661950234857,
+  "fit_rmse_N": 0.07145360471839506,
+  "coef_intercept": 0.41691784068576493,
+  "coef_velocity": -0.01852073434534758,
+  "coef_indentation": -0.5574006613283067,
+  "coef_velocity2": -9.412178459867679e-05,
+  "coef_indentation2": 0.2816958684676192,
+  "coef_velocity_indentation": 0.01916425854525856
+}

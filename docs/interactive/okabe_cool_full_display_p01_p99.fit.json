@@ -1,0 +1,17 @@
+{
+  "subject": "okabe",
+  "condition": "cool",
+  "filter": "Full display p01-p99",
+  "fit_model": "load_zeroed_N = a + b*v + c*d + d2*v^2 + e*d^2 + f*v*d",
+  "fit_uses": "filtered data before display sampling",
+  "display_sampling_uses": "scatter markers only",
+  "fit_points": 21682.0,
+  "fit_r2": 0.9225700977572211,
+  "fit_rmse_N": 0.17576838486626753,
+  "coef_intercept": 0.4936486202305292,
+  "coef_velocity": -0.020343991134001566,
+  "coef_indentation": -0.5559957310056903,
+  "coef_velocity2": -0.000498556642478578,
+  "coef_indentation2": 0.24132556806160696,
+  "coef_velocity_indentation": 0.019837782622962385
+}
